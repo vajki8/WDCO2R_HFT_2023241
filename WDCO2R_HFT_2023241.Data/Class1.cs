@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace ABC123_HFT_2023241.Models
+namespace WDCO2R_HFT_2023241.Data
 {
     public class Class1
     {
