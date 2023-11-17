@@ -16,7 +16,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\ABC123_HFT_2023241.Models\WDCO2R_HFT_2023241.Models.csproj" />
+    <ProjectReference Include="..\WDCO2R_HFT_2023241.Models\WDCO2R_HFT_2023241.Models.csproj" />
   </ItemGroup>
 
 </Project>
