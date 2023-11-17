@@ -43,7 +43,7 @@ namespace WDCO2R_HFT_2023241.Repository
             };
 
             Customer c1 = new Customer() { CustomerId = 1, CustomerName = "Kiss Pista", CustomerAge = 24 };
-            Customer c2 = new Customer() { CustomerId = 1, CustomerName = "Kiss Pista", CustomerAge = 24 };
+            Customer c2 = new Customer() { CustomerId = 1, CustomerName = "Kiss Jóska", CustomerAge = 24 };
         }
     }
 }
