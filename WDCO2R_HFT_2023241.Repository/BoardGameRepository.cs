@@ -31,6 +31,11 @@ namespace WDCO2R_HFT_2023241.Repository
         {
             return context.BoardGame.FirstOrDefault(t => t.BoardGameId == boardgameid);
         }
+
+        public IQueryable<BoardGames> ReadAll()
+        {
+            return context.BoardGame;
+        }
         public void Update(BoardGames boardgames)
         {
             var updated = Read(boardgames.BoardGameId);
@@ -41,4 +46,3 @@ namespace WDCO2R_HFT_2023241.Repository
         }
     }
 }
-//<
