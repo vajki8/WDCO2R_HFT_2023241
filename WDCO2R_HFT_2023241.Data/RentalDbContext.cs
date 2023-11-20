@@ -74,7 +74,19 @@ namespace WDCO2R_HFT_2023241.Repository
             Customer user15 = new Customer() { CustomerId = 15, CustomerName = "Pintér Dávid", CustomerAge = 30 };
             Customer user16 = new Customer() { CustomerId = 16, CustomerName = "Fehér Viktória", CustomerAge = 27 };
 
-            
+            Rental rent1 = new Rental() { RentId = 1, BoardGameId = BoardGameList[15].BoardGameId, CustomerId = user4.CustomerId };
+            Rental rent2 = new Rental() { RentId = 2, BoardGameId = BoardGameList[4].BoardGameId, CustomerId = user12.CustomerId };
+            Rental rent3 = new Rental() { RentId = 3, BoardGameId = BoardGameList[13].BoardGameId, CustomerId = user16.CustomerId };
+            Rental rent4 = new Rental() { RentId = 4, BoardGameId = BoardGameList[7].BoardGameId, CustomerId = user4.CustomerId };
+            Rental rent5 = new Rental() { RentId = 5, BoardGameId = BoardGameList[9].BoardGameId, CustomerId = user3.CustomerId };
+            Rental rent6 = new Rental() { RentId = 6, BoardGameId = BoardGameList[1].BoardGameId, CustomerId = user13.CustomerId };
+            Rental rent7 = new Rental() { RentId = 7, BoardGameId = BoardGameList[6].BoardGameId, CustomerId = user7.CustomerId };
+            Rental rent8 = new Rental() { RentId = 8, BoardGameId = BoardGameList[10].BoardGameId, CustomerId = user1.CustomerId };
+            Rental rent9 = new Rental() { RentId = 9, BoardGameId = BoardGameList[4].BoardGameId, CustomerId = user14.CustomerId };
+            Rental rent10 = new Rental() { RentId = 10, BoardGameId = BoardGameList[3].BoardGameId, CustomerId = user5.CustomerId };
+            Rental rent11 = new Rental() { RentId = 11, BoardGameId = BoardGameList[16].BoardGameId, CustomerId = user2.CustomerId };
+            Rental rent12 = new Rental() { RentId = 12, BoardGameId = BoardGameList[11].BoardGameId, CustomerId = user10.CustomerId };
+
         }
     }
 }
