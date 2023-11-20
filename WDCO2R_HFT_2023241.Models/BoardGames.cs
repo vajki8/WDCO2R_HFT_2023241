@@ -18,5 +18,7 @@ namespace WDCO2R_HFT_2023241.Models
         public string Title { get; set; }
         [Required]
         public string Type { get; set; }
+        [NotMapped]
+        public virtual ICollection<Rental> Rental { get; set; }
     }
 }

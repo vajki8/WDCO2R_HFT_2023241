@@ -36,6 +36,39 @@ namespace WDCO2R_HFT_2023241.Repository
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
+            modelBuilder.Entity<BoardGames>(entity =>
+            {
+                entity
+                .HasMany(b => b.Rental)
+                .WithOne(r => r.BoardGame)
+                .HasForeignKey(b => b.CustomerId)
+                .OnDelete(DeleteBehavior.Cascade);
+            });
+
+            modelBuilder.Entity<Customer>(entity =>
+            {
+                entity
+                .HasMany(c => c.Rental)
+                .WithOne(r => r.Customer)
+                .HasForeignKey(c => c.CustomerId)
+                .OnDelete(DeleteBehavior.Cascade);
+            });
+
+            modelBuilder.Entity<Rental>(entity =>
+            {
+                entity
+                .HasOne(r => r.BoardGame)
+                .WithMany(b => b.Rental)
+                .HasForeignKey(r => r.BoardGameId)
+                .OnDelete(DeleteBehavior.Cascade);
+
+                entity
+                .HasOne(r => r.Customer)
+                .WithMany(b => b.Rental)
+                .HasForeignKey(r => r.CustomerId)
+                .OnDelete(DeleteBehavior.Cascade);
+            });
+
             var BoardGameList = new List<BoardGames>
             {
                 new BoardGames {BoardGameId = 1, Title = "Cartographers", Type = "Strategy"},
@@ -87,6 +120,9 @@ namespace WDCO2R_HFT_2023241.Repository
             Rental rent11 = new Rental() { RentId = 11, BoardGameId = BoardGameList[16].BoardGameId, CustomerId = user2.CustomerId };
             Rental rent12 = new Rental() { RentId = 12, BoardGameId = BoardGameList[11].BoardGameId, CustomerId = user10.CustomerId };
 
+            modelBuilder.Entity<BoardGames>().HasData(BoardGameList);
+            modelBuilder.Entity<Customer>().HasData(user1, user2, user3, user4, user5, user6, user7, user8, user9, user10, user11, user12, user13, user14, user15, user16);
+            modelBuilder.Entity<Rental>().HasData(rent1, rent2, rent3, rent4, rent5, rent6, rent7, rent8, rent9, rent10, rent11, rent12);
         }
     }
 }

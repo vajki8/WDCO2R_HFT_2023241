@@ -11,6 +11,10 @@ namespace WDCO2R_HFT_2023241.Models
     [Table("Rental")]
     public class Rental
     {
+        [Key]
+        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
+        public int RentId { get; set; }
+
         [ForeignKey(nameof(Models.BoardGames))]
         public int BoardGameId { get; set; }
         [ForeignKey(nameof(Models.Customer))]
@@ -21,11 +25,6 @@ namespace WDCO2R_HFT_2023241.Models
 
         [NotMapped]
         public virtual Customer Customer { get; set; }
-        [Key]
-        public int RentId { get; set; }
-        public string RentType { get; set; }
 
-        public DateTime StartofRental { get; set; }
-        public DateTime EndofRental { get; set; }
     }
 }
