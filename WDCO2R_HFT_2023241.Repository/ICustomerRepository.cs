@@ -7,7 +7,7 @@ using WDCO2R_HFT_2023241.Models;
 
 namespace WDCO2R_HFT_2023241.Repository
 {
-    interface ICustomerRepositoy
+    public interface ICustomerRepository
     {
         void Create(Customer customer);
         void Delete(int customerId);

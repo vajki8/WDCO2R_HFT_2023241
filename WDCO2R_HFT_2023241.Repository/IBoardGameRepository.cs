@@ -7,7 +7,7 @@ using WDCO2R_HFT_2023241.Models;
 
 namespace WDCO2R_HFT_2023241.Repository
 {
-    interface IBoardGameRepository
+    public interface IBoardGameRepository
     {
         void Create(BoardGames boardgame);
         void Delete(int boardgameid);

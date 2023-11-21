@@ -7,7 +7,7 @@ using WDCO2R_HFT_2023241.Models;
 
 namespace WDCO2R_HFT_2023241.Repository
 {
-    interface IRentalRepository
+    public interface IRentalRepository
     {
         void Create(Rental rentalId);
         void Delete(int rentalId);

@@ -7,7 +7,7 @@ using WDCO2R_HFT_2023241.Models;
 
 namespace WDCO2R_HFT_2023241.Repository
 {
-    public class CustomerRepository
+    public class CustomerRepository : ICustomerRepository
     {
         RentalDbContext context;
         public CustomerRepository(RentalDbContext context)
