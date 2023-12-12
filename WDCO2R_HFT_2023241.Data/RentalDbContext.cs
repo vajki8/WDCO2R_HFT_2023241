@@ -96,7 +96,7 @@ namespace WDCO2R_HFT_2023241.Repository
             Customer user4 = new Customer() { CustomerId = 4, CustomerName = "Szabó Anna", CustomerAge = 22 };
             Customer user5 = new Customer() { CustomerId = 5, CustomerName = "Varga Gábor", CustomerAge = 26 };
             Customer user6 = new Customer() { CustomerId = 6, CustomerName = "Tóth Zsuzsa", CustomerAge = 31 };
-            Customer user7 = new Customer() { CustomerId = 7, CustomerName = "Molnár András", CustomerAge = 27 };
+            Customer user7 = new Customer() { CustomerId = 7, CustomerName = "Molnár András", CustomerAge = 66 };
             Customer user8 = new Customer() { CustomerId = 8, CustomerName = "Horváth Katalin", CustomerAge = 29 };
             Customer user9 = new Customer() { CustomerId = 9, CustomerName = "Papp Márton", CustomerAge = 24 };
             Customer user10 = new Customer() { CustomerId = 10, CustomerName = "Farkas Judit", CustomerAge = 32 };

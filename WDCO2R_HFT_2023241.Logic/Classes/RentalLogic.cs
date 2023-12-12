@@ -14,10 +14,6 @@ namespace WDCO2R_HFT_2023241.Logic.Classes
         IRentalRepository rentRep;
         ICustomerRepository cusRep;
         IBoardGameRepository boardRep;
-        public RentalLogic(IRentalRepository rentalrepos)
-        {
-            rentRep = rentalrepos;
-        }
 
         public RentalLogic(IRentalRepository rentalrepos, IBoardGameRepository boardrep, ICustomerRepository cusrep)
         {
@@ -98,64 +94,64 @@ namespace WDCO2R_HFT_2023241.Logic.Classes
         }
 
         //Non CRUD
-
-        public IEnumerable<object> HighestValueGame()
+        public IEnumerable<object> OlderCustomer()
         {
-            var highest = from x in rentRep.ReadAll()
-                          where x.Price.Equals(rentRep.ReadAll().Max(t => t.Price))
-                          select new
-                          {
-                              _BoardGame = x.BoardGame.Title,
-                              _Customer = x.Customer.CustomerName,
-                              _Price = x.Price,
-                          };
-            return highest;
-        }
-        public IEnumerable<RentInfoTime> MaxTimeRent()
-        {
-            var maxtime = from x in this.rentRep.ReadAll()
-                          where x.TimeLeft.Equals(rentRep.ReadAll().Max(t => t.TimeLeft))
-                          select new RentInfoTime()
-                          {
-                              BoardGameName = x.BoardGame.Title,
-                              CustomerName = x.Customer.CustomerName,
-                              TimeLeft = x.TimeLeft,
-                          };
-            return maxtime;
-        }
-        public IEnumerable<RentInfoTime> MinTimeRent()
-        {
-            var mintime = from x in this.rentRep.ReadAll()
-                          where x.TimeLeft.Equals(rentRep.ReadAll().Min(t => t.TimeLeft))
-                          select new RentInfoTime()
-                          {
-                              BoardGameName = x.BoardGame.Title,
-                              CustomerName = x.Customer.CustomerName,
-                              TimeLeft = x.TimeLeft,
-                          };
-            return mintime;
-        }
-        public IEnumerable<RentInfoCustomer> OldestCustomer()
-        {
-            var oldest = from x in this.cusRep.ReadAll()
-                          where x.CustomerAge.Equals(cusRep.ReadAll().Max(t => t.CustomerAge))
-                          select new RentInfoCustomer()
-                          {
-                              CustomerName = x.CustomerName,
-                              CustomerAge = x.CustomerAge,
-                          };
-            return oldest;
-        }
-        public IEnumerable<RentInfoCustomer> YoungestCustomer()
-        {
-            var youngest = from x in this.cusRep.ReadAll()
-                         where x.CustomerAge.Equals(cusRep.ReadAll().Min(t => t.CustomerAge))
-                         select new RentInfoCustomer()
+            var older = from x in rentRep.ReadAll()
+                         where x.Customer.CustomerAge > 50
+                         select new
                          {
-                             CustomerName = x.CustomerName,
-                             CustomerAge = x.CustomerAge,
+                             _CustomerName = x.Customer.CustomerName,
+                             _CustomerAge = x.Customer.CustomerAge,
                          };
-            return youngest;
+            return older;
+        }
+
+        public IEnumerable<object> typeFamily()
+        {
+            var type = from x in rentRep.ReadAll()
+                       where x.BoardGame.Type.ToUpper().Contains("FAMILY")
+                       select new
+                       {
+                           _BoardGameName = x.BoardGame.Title,
+                           _BoardGameType = x.BoardGame.Type
+                       };
+            return type;
+        }
+        public IEnumerable<KeyValuePair<string, string>> currentCustomer()
+        {
+            var current = from x in rentRep.ReadAll()
+                          select new KeyValuePair<string, string>
+                          (x.Customer.CustomerName, x.BoardGame.Title);
+            return current;
+        }
+
+        public IEnumerable<KeyValuePair<string, double>> HighestTime()
+        {
+            var high = from x in rentRep.ReadAll()
+                       select new KeyValuePair<string, double>
+                       (x.Customer.CustomerName, x.TimeLeft);
+            return high;
+        }
+
+        public IEnumerable<KeyValuePair<string, double>> FreePrice()
+        {
+            var price = from x in rentRep.ReadAll()
+                       select new KeyValuePair<string, double>
+                       (x.Customer.CustomerName, x.Price);
+            return price;
+        }
+
+
+        public IEnumerable<object> Withinweek()
+        {
+            var week = from x in rentRep.ReadAll()
+                        where x.TimeLeft < 10
+                        select new
+                        {
+                            _CustomerName = x.Customer.CustomerName,
+                            _TimeLeft = x.TimeLeft
+                        };
+            return week;
         }
 
         public class RentInfoTime
@@ -202,7 +198,7 @@ namespace WDCO2R_HFT_2023241.Logic.Classes
             }
             public override int GetHashCode()
             {
-                throw new NotImplementedException();
+                return HashCode.Combine(this.CustomerName, this.CustomerAge);
             }
         }
     }

@@ -14,5 +14,6 @@ namespace WDCO2R_HFT_2023241.Repository
         Customer Read(int customerId);
         IQueryable<Customer> ReadAll();
         void Update(Customer customer);
+        
     }
 }

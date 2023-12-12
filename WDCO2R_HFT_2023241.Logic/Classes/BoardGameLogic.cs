@@ -11,7 +11,7 @@ using WDCO2R_HFT_2023241.Repository;
 
 namespace WDCO2R_HFT_2023241.Logic.Classes
 {
-    class BoardGameLogic : IBoardGameLogic
+    public class BoardGameLogic : IBoardGameLogic
     {
         IBoardGameRepository Boardgamerepo;
         public BoardGameLogic(IBoardGameRepository boardgamerepo)
