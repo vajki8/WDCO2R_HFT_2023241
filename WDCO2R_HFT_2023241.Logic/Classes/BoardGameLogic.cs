@@ -3,10 +3,11 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using WDCO2R_HFT_2023241.Logic.InterFaces;
 using WDCO2R_HFT_2023241.Models;
 using WDCO2R_HFT_2023241.Repository;
 
-namespace WDCO2R_HFT_2023241.Logic
+namespace WDCO2R_HFT_2023241.Logic.Classes
 {
     class BoardGameLogic : IBoardGameLogic
     {
@@ -18,11 +19,11 @@ namespace WDCO2R_HFT_2023241.Logic
 
         public void Create(BoardGames boardgame)
         {
-            if(boardgame.Title == null)
+            if (boardgame.Title == null)
             {
                 throw new NullReferenceException();
             }
-            else if(boardgame.Type == null)
+            else if (boardgame.Type == null)
             {
                 throw new NullReferenceException();
             }
@@ -34,7 +35,7 @@ namespace WDCO2R_HFT_2023241.Logic
 
         public void Delete(int boardgameId)
         {
-            if(boardgameId < 0)
+            if (boardgameId < 0)
             {
                 throw new ArgumentOutOfRangeException();
             }
@@ -46,7 +47,7 @@ namespace WDCO2R_HFT_2023241.Logic
 
         public BoardGames Read(int boardgameId)
         {
-            if(boardgameId < 0)
+            if (boardgameId < 0)
             {
                 throw new ArgumentOutOfRangeException();
             }

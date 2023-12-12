@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using WDCO2R_HFT_2023241.Models;
 
-namespace WDCO2R_HFT_2023241.Logic
+namespace WDCO2R_HFT_2023241.Logic.InterFaces
 {
     public interface ICustomerLogic
     {

@@ -15,10 +15,22 @@ namespace WDCO2R_HFT_2023241.Models
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int BoardGameId { get; set; }
         [Required]
+        [StringLength(50)]
         public string Title { get; set; }
         [Required]
+        [StringLength(50)]
         public string Type { get; set; }
         [NotMapped]
         public virtual ICollection<Rental> Rental { get; set; }
+        public BoardGames()
+        {
+
+        }
+        public override string ToString()
+        {
+            return $"BoardGameId : {BoardGameId}" +
+                   $"\nTitle : {Title}" +
+                   $"\nType: {Type}\n";
+        }
     }
 }

@@ -3,10 +3,11 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using WDCO2R_HFT_2023241.Logic.InterFaces;
 using WDCO2R_HFT_2023241.Models;
 using WDCO2R_HFT_2023241.Repository;
 
-namespace WDCO2R_HFT_2023241.Logic
+namespace WDCO2R_HFT_2023241.Logic.Classes
 {
     public class RentalLogic : IRentalLogic
     {

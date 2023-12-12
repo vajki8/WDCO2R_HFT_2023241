@@ -26,5 +26,11 @@ namespace WDCO2R_HFT_2023241.Models
         [NotMapped]
         public virtual Customer Customer { get; set; }
 
+        public override string ToString()
+        {
+            return $"RentId: {RentId}" +
+                  $"\nBoardGameId :  {BoardGameId}" +
+                  $"\nCustomerId : {CustomerId}\n";
+        }
     }
 }
