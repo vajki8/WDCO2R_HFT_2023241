@@ -17,6 +17,8 @@ namespace WDCO2R_HFT_2023241.Models
         [Required]
         [StringLength(50)]
         public string CustomerName { get; set; }
+        [Required]
+        [Range(18,99)]
         public int CustomerAge { get; set; }
         [NotMapped]
         public virtual ICollection<Rental> Rental { get; set; }

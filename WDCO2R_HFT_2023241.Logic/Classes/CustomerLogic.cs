@@ -19,17 +19,21 @@ namespace WDCO2R_HFT_2023241.Logic.Classes
         }
         public void Create(Customer customer)
         {
-            if (customer == null)
+            if (customer.CustomerId < 1)
             {
-                throw new NullReferenceException();
+                throw new NullReferenceException("ID can't be less than 1");
             }
-            else if (customer.CustomerAge <= 18)
+            else if (customer.CustomerName == null || customer.CustomerName == "")
             {
-                throw new ArgumentOutOfRangeException();
+                throw new NullReferenceException("Name can't be empty");
             }
-            else if (customer.CustomerName == null)
+            else if (customer.CustomerAge < 18)
             {
-                throw new NullReferenceException();
+                throw new NullReferenceException("Must be older than 18");
+            }
+            else if (customer.CustomerName.Length > 50)
+            {
+                throw new ArgumentException("The name is too long");
             }
             else
             {
@@ -39,25 +43,26 @@ namespace WDCO2R_HFT_2023241.Logic.Classes
 
         public void Delete(int customerId)
         {
-            if (customerId <= 0)
+            if (customerId < 0)
             {
-                throw new ArgumentOutOfRangeException();
+                throw new ArgumentOutOfRangeException("ID does not exist, can't be deleted");
             }
-            Customerrepos.Delete(customerId);
+            else
+            {
+                Customerrepos.Delete(customerId);
+            }
         }
 
         public Customer Read(int customerId)
         {
-            if (customerId <= 0)
+            if (customerId < 0)
             {
-                throw new ArgumentOutOfRangeException();
-
+                throw new ArgumentOutOfRangeException("ID does not exist, can't be deleted");
             }
             else
             {
                 return Customerrepos.Read(customerId);
             }
-
         }
 
         public IEnumerable<Customer> ReadAll()
@@ -67,23 +72,31 @@ namespace WDCO2R_HFT_2023241.Logic.Classes
 
         public void Update(Customer customer)
         {
-
             if (customer == null)
             {
                 throw new NullReferenceException();
             }
-            else if (customer.CustomerAge < 12)
+            else if (customer.CustomerId < 1)
             {
-                throw new ArgumentOutOfRangeException("Must be older than 18");
+                throw new NullReferenceException("ID can't be less than 1");
             }
-            else if (customer.CustomerName == null)
+            else if (customer.CustomerName == null || customer.CustomerName == "")
             {
-                throw new NullReferenceException();
+                throw new NullReferenceException("Name can't be empty");
+            }
+            else if (customer.CustomerAge < 18)
+            {
+                throw new NullReferenceException("Must be older than 18");
+            }
+            else if (customer.CustomerName.Length > 50)
+            {
+                throw new ArgumentException("The name is too long");
             }
             else
             {
                 Customerrepos.Update(customer);
             }
+
         }
     }
 }

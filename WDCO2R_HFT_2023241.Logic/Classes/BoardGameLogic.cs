@@ -1,8 +1,10 @@
-﻿using System;
+﻿using Castle.Core.Resource;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Xml.Linq;
 using WDCO2R_HFT_2023241.Logic.InterFaces;
 using WDCO2R_HFT_2023241.Models;
 using WDCO2R_HFT_2023241.Repository;
@@ -19,13 +21,21 @@ namespace WDCO2R_HFT_2023241.Logic.Classes
 
         public void Create(BoardGames boardgame)
         {
-            if (boardgame.Title == null)
+            if(boardgame.BoardGameId < 1)
             {
-                throw new NullReferenceException();
+                throw new NullReferenceException("ID can't be less than 1");
             }
-            else if (boardgame.Type == null)
+            else if (boardgame.Title == null || boardgame.Title == "")
             {
-                throw new NullReferenceException();
+                throw new NullReferenceException("Name can't be empty");
+            }
+            else if (boardgame.Type == null || boardgame.Type == "")
+            {
+                throw new NullReferenceException("Type can't be empty");
+            }
+            else if (boardgame.Title.Length > 50 || boardgame.Type.Length >50)
+            {
+                throw new ArgumentException("The name or type is too long");
             }
             else
             {
@@ -37,7 +47,7 @@ namespace WDCO2R_HFT_2023241.Logic.Classes
         {
             if (boardgameId < 0)
             {
-                throw new ArgumentOutOfRangeException();
+                throw new ArgumentOutOfRangeException("ID does not exist, can't be deleted");
             }
             else
             {
@@ -49,7 +59,7 @@ namespace WDCO2R_HFT_2023241.Logic.Classes
         {
             if (boardgameId < 0)
             {
-                throw new ArgumentOutOfRangeException();
+                throw new ArgumentOutOfRangeException("ID does not exist, can't be deleted");
             }
             else
             {
@@ -68,17 +78,17 @@ namespace WDCO2R_HFT_2023241.Logic.Classes
             {
                 throw new NullReferenceException();
             }
-            else if (boardgame.Title == null)
+            else if (boardgame.Title == null || boardgame.Title == "")
             {
-                throw new NullReferenceException();
+                throw new NullReferenceException("Name can't be empty");
             }
-            else if (boardgame.Type == null)
+            else if (boardgame.BoardGameId < 1)
             {
-                throw new NullReferenceException();
+                throw new NullReferenceException("ID can't be less than 1");
             }
-            else if (boardgame.BoardGameId <= 0)
+            else if (boardgame.Title.Length > 50 || boardgame.Type.Length > 50)
             {
-                throw new ArgumentOutOfRangeException();
+                throw new ArgumentException("The name or type is too long");
             }
             else
             {
