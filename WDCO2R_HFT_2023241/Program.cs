@@ -8,6 +8,7 @@ using WDCO2R_HFT_2023241.Repository;
 namespace WDCO2R_HFT_2023241.Client
 {
     class Program
+       
     {
         static void Main(string[] args)
         {

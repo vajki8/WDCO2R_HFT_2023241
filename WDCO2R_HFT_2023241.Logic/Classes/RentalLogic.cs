@@ -128,6 +128,7 @@ namespace WDCO2R_HFT_2023241.Logic.Classes
         public IEnumerable<KeyValuePair<string, double>> HighestTime()
         {
             var high = from x in rentRep.ReadAll()
+                       where x.TimeLeft.Equals(rentRep.ReadAll().Max(x => x.TimeLeft))
                        select new KeyValuePair<string, double>
                        (x.Customer.CustomerName, x.TimeLeft);
             return high;
@@ -136,6 +137,7 @@ namespace WDCO2R_HFT_2023241.Logic.Classes
         public IEnumerable<KeyValuePair<string, double>> FreePrice()
         {
             var price = from x in rentRep.ReadAll()
+                        where x.Price == 0
                        select new KeyValuePair<string, double>
                        (x.Customer.CustomerName, x.Price);
             return price;

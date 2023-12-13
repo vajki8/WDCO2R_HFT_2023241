@@ -201,7 +201,7 @@ namespace WDCO2R_HFT_2023241.Test
         public void HighestTimeTest()
         {
             var expected = rentLog.HighestTime().ToArray();
-            Assert.That(expected[1], Is.EqualTo(new KeyValuePair<string, double>("Test Customer 2", 400)));
+            Assert.That(expected[0], Is.EqualTo(new KeyValuePair<string, double>("Test Customer 2", 400)));
         }
 
         [Test]
