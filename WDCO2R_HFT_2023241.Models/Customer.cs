@@ -5,6 +5,7 @@ using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Text.Json.Serialization;
 
 namespace WDCO2R_HFT_2023241.Models
 {
@@ -15,8 +16,21 @@ namespace WDCO2R_HFT_2023241.Models
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int CustomerId { get; set; }
         [Required]
+        [StringLength(50)]
         public string CustomerName { get; set; }
+        [Required]
+        [Range(18,99)]
         public int CustomerAge { get; set; }
+        [NotMapped]
+        [JsonIgnore]
+        public virtual ICollection<Rental> Rental { get; set; }
 
+
+        public override string ToString()
+        {
+            return $"CustomerId: {CustomerId}" +
+                   $"\nCustomerName :  {CustomerName}" +
+                   $"\nCustomerAge : {CustomerAge}\n";
+        }
     }
 }
