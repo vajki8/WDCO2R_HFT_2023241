@@ -15,6 +15,9 @@ namespace WDCO2R_HFT_2023241.Models
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int RentId { get; set; }
+        [Required]
+        [StringLength(50)]
+        public string Name { get; set; }
 
         [ForeignKey(nameof(Models.BoardGames))]
         public int BoardGameId { get; set; }
