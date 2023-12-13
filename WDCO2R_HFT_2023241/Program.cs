@@ -9,7 +9,7 @@ using WDCO2R_HFT_2023241.Repository;
 
 namespace WDCO2R_HFT_2023241.Client
 {
-    class Program
+    internal class Program
     {
         static RestService rest;
         static void Create(string entity)
@@ -27,7 +27,7 @@ namespace WDCO2R_HFT_2023241.Client
 
                 rest.Post(new BoardGames() { BoardGameId = boradgameid, Title = boardgametitle, Type = boardgametype }, "boardgame");
             }
-            else if (entity.ToLower() == "Customer")
+            else if (entity.ToLower() == "customer")
             {
                 Console.WriteLine("CustomerId: ");
                 int id = int.Parse(Console.ReadLine());
@@ -38,7 +38,7 @@ namespace WDCO2R_HFT_2023241.Client
 
                 rest.Post(new Customer() { CustomerId = id, CustomerAge = age, CustomerName = name }, "customer");
             }
-            else if (entity.ToLower() == "Rental")
+            else if (entity.ToLower() == "rental")
             {
                 Console.WriteLine("RentId: ");
                 int rentid = int.Parse(Console.ReadLine());
@@ -46,14 +46,16 @@ namespace WDCO2R_HFT_2023241.Client
                 int boardgameid = int.Parse(Console.ReadLine());
                 Console.WriteLine("CustomerId: ");
                 int customerid = int.Parse(Console.ReadLine());
+                Console.WriteLine("Name: ");
+                string name = Console.ReadLine();
                 Console.WriteLine("Price: ");
                 double price = double.Parse(Console.ReadLine());
                 Console.WriteLine("TimeLeft: ");
                 double time = double.Parse(Console.ReadLine());
 
-                rest.Post(new Rental() { RentId = rentid, BoardGameId = boardgameid, CustomerId = customerid, Price = price, TimeLeft = time }, "rental");
+                rest.Post(new Rental() { RentId = rentid, BoardGameId = boardgameid, CustomerId = customerid, Price = price, TimeLeft = time, Name = name}, "rental");
             }
-            Console.WriteLine("\n" + entity + "added to the db");
+            Console.WriteLine("\n" + entity + " added to the db");
             Console.Write("Press any button to continue");
             Console.ReadKey();
         }
@@ -212,11 +214,11 @@ namespace WDCO2R_HFT_2023241.Client
             }
             Console.ReadLine();
         }
-        static void Oneweekleft(string entity)
+        static void Withinweek(string entity)
         {
-            Console.WriteLine("Customers with only 1 week left: ");
-            var week = rest.Get<object>(entity);
-            foreach (var item in week)
+            Console.WriteLine("Customers with low rent time left: ");
+            var free = rest.Get<object>(entity);
+            foreach (var item in free)
             {
                 Console.WriteLine(item.ToString());
             }
@@ -224,7 +226,7 @@ namespace WDCO2R_HFT_2023241.Client
         }
         static void Main(string[] args)
         {
-            rest = new RestService("http://localhost:35357/","rental");
+            rest = new RestService("http://localhost:35357/","swagger");
 
             ConsoleMenu menu = new ConsoleMenu();
 
@@ -263,11 +265,12 @@ namespace WDCO2R_HFT_2023241.Client
 
             menu.Add("Non CRUD methods",
                 () => new ConsoleMenu()
-                .Add("Senior members", () => OlderCustomer("stat/oldercustomer"))
-                .Add("HighestRent", () => HighestRent("stat/highestrent"))
-                .Add("FreeRents", () => Freegames("stat/freegames"))
-                .Add("Low rent time", () => Oneweekleft("stat/oneweekleft"))
-                .Add("Family games", () => Family("stat/family"))
+                .Add("Senior members", () => OlderCustomer("stat/OlderCustomer"))
+                .Add("HighestRent", () => HighestRent("stat/HighestTime"))
+                .Add("FreeRents", () => Freegames("stat/FreePrice"))
+                .Add("Current Customers", () => currentCustomer("stat/currentCustomer"))
+                .Add("Family games", () => Family("stat/typeFamily"))
+                .Add("One week left", () => Withinweek("stat/withinWeek"))
                 .Add("Back to menu", ConsoleMenu.Close)
                 .Show()
                 );

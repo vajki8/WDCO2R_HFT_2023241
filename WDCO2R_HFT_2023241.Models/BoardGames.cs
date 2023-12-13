@@ -5,6 +5,7 @@ using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Text.Json.Serialization;
 
 namespace WDCO2R_HFT_2023241.Models
 {
@@ -21,6 +22,7 @@ namespace WDCO2R_HFT_2023241.Models
         [StringLength(50)]
         public string Type { get; set; }
         [NotMapped]
+        [JsonIgnore]
         public virtual ICollection<Rental> Rental { get; set; }
         public BoardGames()
         {

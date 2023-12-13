@@ -29,7 +29,7 @@ namespace WDCO2R_HFT_2023241.Endpoint.Controllers
         [HttpGet]
         public IEnumerable<KeyValuePair<string, string>> currentCustomer()
         {
-            return this.logic.currentCustomer();
+            return this.logic.currentCustomers();
         }
 
         [HttpGet]
@@ -43,6 +43,11 @@ namespace WDCO2R_HFT_2023241.Endpoint.Controllers
             return this.logic.FreePrice();
         }
 
+        [HttpGet]
+        public IEnumerable<object> withinWeek()
+        {
+            return this.logic.Withinweek();
+        }
 
     }
 }

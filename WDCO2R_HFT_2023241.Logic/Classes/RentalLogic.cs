@@ -117,7 +117,7 @@ namespace WDCO2R_HFT_2023241.Logic.Classes
                        };
             return type;
         }
-        public IEnumerable<KeyValuePair<string, string>> currentCustomer()
+        public IEnumerable<KeyValuePair<string, string>> currentCustomers()
         {
             var current = from x in rentRep.ReadAll()
                           select new KeyValuePair<string, string>
@@ -147,7 +147,7 @@ namespace WDCO2R_HFT_2023241.Logic.Classes
         public IEnumerable<object> Withinweek()
         {
             var week = from x in rentRep.ReadAll()
-                        where x.TimeLeft < 10
+                        where x.TimeLeft < 8
                         select new
                         {
                             _CustomerName = x.Customer.CustomerName,

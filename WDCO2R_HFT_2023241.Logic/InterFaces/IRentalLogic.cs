@@ -18,7 +18,7 @@ namespace WDCO2R_HFT_2023241.Logic.InterFaces
         public IEnumerable<object> OlderCustomer();
         public IEnumerable<object> Withinweek();
         public IEnumerable<object> typeFamily();
-        public IEnumerable<KeyValuePair<string, string>> currentCustomer();
+        public IEnumerable<KeyValuePair<string, string>> currentCustomers();
         public IEnumerable<KeyValuePair<string, double>> HighestTime();
         public IEnumerable<KeyValuePair<string, double>> FreePrice();
     }

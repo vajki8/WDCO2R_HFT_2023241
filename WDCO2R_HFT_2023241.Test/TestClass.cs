@@ -193,7 +193,7 @@ namespace WDCO2R_HFT_2023241.Test
             List<KeyValuePair<string, string>> list = new List<KeyValuePair<string, string>>();
             list.Add(new KeyValuePair<string, string>("Test Customer 1", "Test Game 1"));
             list.Add(new KeyValuePair<string, string>("Test Customer 2", "Test Game 2"));
-            var expected = rentLog.currentCustomer().ToList();
+            var expected = rentLog.currentCustomers().ToList();
             Assert.That(expected, Is.EqualTo(list));
         }
 
