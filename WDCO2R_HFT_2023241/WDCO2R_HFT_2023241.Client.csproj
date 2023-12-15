@@ -19,7 +19,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\WDCO2R_HFT_2023241.Data\WDCO2R_HFT_2023241.Data.csproj" />
     <ProjectReference Include="..\WDCO2R_HFT_2023241.Models\WDCO2R_HFT_2023241.Models.csproj" />
   </ItemGroup>
 
