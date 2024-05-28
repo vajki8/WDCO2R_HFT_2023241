@@ -3,22 +3,48 @@
 <html>
 <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Games Database</title>
-
-    <link rel="stylesheet" href="style.css" />
+    <title></title>
+    <link rel="stylesheet" href="StyleSheet.css" />
 </head>
 <body>
+    <h1>Boardgame catalog</h1>
 
-
-
-    <div class="Container">
-        <h1 id="mainH1">Selection menu</h1>
-        <a href="boardgame.html">BoardGames</a>
-        <a href="developer.html">Customers</a>
-        <a href="character.html">Rentals</a>
-        <a href="stats.html">Stats</a>
+    <div id="formdiv">
+        <label>Boardgame Title</label>
+        <input type="text" id="gametitle" />
+        <label>Boardgame Type</label>
+        <input type="text" id="gametype" />
+        <button type="button" onclick="create()">Add boardgame</button>
     </div>
 
+    <div id="updateformdiv">
+        <label>Boardgame Title</label>
+        <input type="text" id="gametitleupdate" />
+        <label>Boardgame Type</label>
+        <input type="text" id="gametypeupdate" />
+        <button type="button" onclick="update()">Update boradgame</button>
+    </div>
+
+    <table>
+        <thead>
+            <tr>
+                <th>
+                    Author
+                </th>
+                <th>
+                    Title
+                </th>
+                <th>
+                    Actions
+                </th>
+            </tr>
+        </thead>
+        <tbody id="resultarea">
+        </tbody>
+    </table>
+
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/microsoft-signalr/6.0.1/signalr.js"></script>
+    <script src="script.js"></script>
 </body>
 </html>
