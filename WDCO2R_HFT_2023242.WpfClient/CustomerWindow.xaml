@@ -6,7 +6,132 @@
         xmlns:local="clr-namespace:WDCO2R_HFT_2023242.WpfClient"
         mc:Ignorable="d"
         Title="CustomerWindow" Height="450" Width="800">
+    <Window.DataContext>
+        <local:CustomerWindowViewModel/>
+    </Window.DataContext>
     <Grid>
-        
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="1*"></ColumnDefinition>
+            <ColumnDefinition Width="1*"></ColumnDefinition>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="1*"></RowDefinition>
+            <RowDefinition Height="1*"></RowDefinition>
+            <RowDefinition Height="1*"></RowDefinition>
+            <RowDefinition Height="1*"></RowDefinition>
+            <RowDefinition Height="1*"></RowDefinition>
+        </Grid.RowDefinitions>
+
+
+        <ListBox Grid.Row="1"
+     Grid.Column="0"
+     Grid.RowSpan="4"
+     FontSize="20"
+     FontWeight="DemiBold"
+     Margin="15,3,20,3"
+     BorderBrush="Black"
+     BorderThickness="3"
+     ItemsSource="{Binding Customers}"
+     SelectedItem="{Binding SelectedCustomer}">
+            <ListBox.ItemTemplate>
+                <DataTemplate>
+                    <Label Content="{Binding CustomerName}" Foreground="Black"></Label>
+                </DataTemplate>
+            </ListBox.ItemTemplate>
+            <ListBox.Resources>
+                <Style TargetType="Border">
+                    <Setter Property="CornerRadius" Value="5"/>
+                </Style>
+            </ListBox.Resources>
+        </ListBox>
+
+        <Button x:Name="bt_create"
+            Content="Create"
+            Grid.Column="1"
+            FontSize="32"
+            FontWeight="DemiBold"
+            Margin="60,15,60,15"
+            Padding="0,0,0,3"
+            BorderBrush="Black"
+            BorderThickness="3"
+            Command ="{Binding CreateCustomerCommand}">
+
+            <Button.Resources>
+                <Style TargetType="Border">
+                    <Setter Property="CornerRadius" Value="10"/>
+                </Style>
+            </Button.Resources>
+
+        </Button>
+        <Button x:Name="bt_update"
+            Content="Update"
+            Grid.Row="1"
+            Grid.Column="1"
+            FontSize="32"
+            FontWeight="DemiBold"
+            Margin="60,15,60,15"
+            Padding="0,0,0,3"
+            BorderBrush="Black"
+            BorderThickness="3"
+            Command ="{Binding UpdateCustomerCommand}">
+
+            <Button.Resources>
+                <Style TargetType="Border">
+                    <Setter Property="CornerRadius" Value="10"/>
+                </Style>
+            </Button.Resources>
+
+        </Button>
+        <Button x:Name="bt_delete"
+            Content="Delete"
+            Grid.Row="2"
+            Grid.Column="1"
+            FontSize="32"
+            FontWeight="DemiBold"
+            Margin="60,15,60,15"
+            Padding="0,0,0,3"
+            BorderBrush="Black"
+            BorderThickness="3"
+            Command ="{Binding DeleteCustomerCommand}">
+
+            <Button.Resources>
+                <Style TargetType="Border">
+                    <Setter Property="CornerRadius" Value="10"/>
+                </Style>
+            </Button.Resources>
+
+        </Button>
+        <TextBox Text="{Binding SelectedCustomer.CustomerName}" 
+        Grid.Row="3"
+             Grid.Column="1"
+             Margin="20,20,20,20"
+             Padding="10"
+             FontSize="18"
+             FontWeight="DemiBold"
+             BorderThickness="3"
+             BorderBrush="Black"
+             >
+            <TextBox.Resources>
+                <Style TargetType="Border">
+                    <Setter Property="CornerRadius" Value="10"/>
+                </Style>
+            </TextBox.Resources>
+        </TextBox>
+        <TextBox Text="{Binding SelectedCustomer.CustomerAge}" 
+Grid.Row="4"
+     Grid.Column="1"
+     Margin="20,20,20,20"
+     Padding="10"
+     FontSize="18"
+     FontWeight="DemiBold"
+     BorderThickness="3"
+     BorderBrush="Black"
+     >
+            <TextBox.Resources>
+                <Style TargetType="Border">
+                    <Setter Property="CornerRadius" Value="10"/>
+                </Style>
+            </TextBox.Resources>
+        </TextBox>
     </Grid>
 </Window>

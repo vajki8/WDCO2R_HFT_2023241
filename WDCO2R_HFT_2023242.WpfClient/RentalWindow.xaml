@@ -73,20 +73,9 @@
                        FontWeight="DemiBold"
                        Padding="5"
                        />
-            <Label Content="Release"
+            <Label Content="TimeLeft"
                        Grid.Row="5"
-                       Grid.Column="3"
-                       Grid.ColumnSpan="3"
-                       VerticalAlignment="Center"
-                       HorizontalAlignment="Center"
-                       FontSize="20"
-                       FontWeight="DemiBold"
-                       Padding="5"
-                       />
-            <Label Content="Rating"
-                       Grid.Row="7"
-                       Grid.Column="3"
-                       Grid.ColumnSpan="3"
+                       Grid.Column="4"
                        VerticalAlignment="Center"
                        HorizontalAlignment="Center"
                        FontSize="20"
@@ -126,30 +115,15 @@
                     </Style>
                 </TextBox.Resources>
             </TextBox>
-            <TextBox Grid.Row="6"
+            <TextBox Grid.Row="5"
                      Grid.Column="3"
                      Grid.ColumnSpan="3"
-                     Margin="3"
+                     Margin="0,40,6,6"
                      FontSize="18"
                      FontWeight="DemiBold"
                      BorderThickness="3"
                      BorderBrush="Black"
-                     Text="{Binding SelectedRental.BoardGameId}">
-                <TextBox.Resources>
-                    <Style TargetType="Border">
-                        <Setter Property="CornerRadius" Value="10"/>
-                    </Style>
-                </TextBox.Resources>
-            </TextBox>
-            <TextBox Grid.Row="8"
-                     Grid.Column="3"
-                     Grid.ColumnSpan="3"
-                     Margin="3"
-                     FontSize="18"
-                     FontWeight="DemiBold"
-                     BorderThickness="3"
-                     BorderBrush="Black"
-                     Text="{Binding SelectedRental.TimeLeft}">
+                     Text="{Binding SelectedRental.TimeLeft}" Grid.RowSpan="2">
                 <TextBox.Resources>
                     <Style TargetType="Border">
                         <Setter Property="CornerRadius" Value="10"/>
@@ -171,7 +145,7 @@
                      SelectedItem="{Binding SelectedRental}">
                 <ListBox.ItemTemplate>
                     <DataTemplate>
-                        <Label Content="{Binding GameName}" Foreground="White"></Label>
+                        <Label Content="{Binding Name}" Foreground="Black"></Label>
                     </DataTemplate>
                 </ListBox.ItemTemplate>
                 <ListBox.Resources>
@@ -192,7 +166,7 @@
                     Padding="0,0,0,3"
                     BorderBrush="Black"
                     BorderThickness="3"
-                    Command="{Binding CreateGameCommand}">
+                    Command="{Binding CreateRentalCommand}">
 
                 <Button.Resources>
                     <Style TargetType="Border">
@@ -211,7 +185,7 @@
                     Padding="0,0,0,3"
                     BorderBrush="Black"
                     BorderThickness="3"
-                    Command="{Binding UpdateGameCommand}">
+                    Command="{Binding UpdateRentalCommand}">
 
                 <Button.Resources>
                     <Style TargetType="Border">
@@ -230,7 +204,7 @@
                     Padding="0,0,0,3"
                     BorderBrush="Black"
                     BorderThickness="3"
-                    Command="{Binding DeleteGameCommand}">
+                    Command="{Binding DeleteRentalCommand}">
 
                 <Button.Resources>
                     <Style TargetType="Border">

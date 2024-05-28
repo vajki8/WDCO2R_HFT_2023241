@@ -24,13 +24,13 @@ namespace WDCO2R_HFT_2023241.Test
             Mock<ICustomerRepository> mockCusRep = new Mock<ICustomerRepository>();
             Mock<IRentalRepository> mockRentRep = new Mock<IRentalRepository>();
 
-            BoardGames brd1 = new BoardGames
+            BoardGame brd1 = new BoardGame
             {
                 BoardGameId = 1,
                 Title = "Test Game 1",
                 Type = "Test Type 1",
             };
-            BoardGames brd2 = new BoardGames
+            BoardGame brd2 = new BoardGame
             {
                 BoardGameId = 2,
                 Title = "Test Game 2",
@@ -134,7 +134,7 @@ namespace WDCO2R_HFT_2023241.Test
         [Test]
         public void UpdateGameWithCorrectNameTest()
         {
-            var updated = new BoardGames()
+            var updated = new BoardGame()
             {
                 BoardGameId = 1,
                 Title = "Cartographers",
@@ -155,7 +155,7 @@ namespace WDCO2R_HFT_2023241.Test
         [Test]
         public void UpdateGameWithIncorrectNameTest()
         {
-            var updated = new BoardGames()
+            var updated = new BoardGame()
             {
                 BoardGameId=1,
                 Title="",

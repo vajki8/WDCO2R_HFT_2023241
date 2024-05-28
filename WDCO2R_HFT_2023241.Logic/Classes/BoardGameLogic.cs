@@ -19,13 +19,13 @@ namespace WDCO2R_HFT_2023241.Logic.Classes
             Boardgamerepo = boardgamerepo;
         }
 
-        public void Create(BoardGames boardgame)
+        public void Create(BoardGame boardgame)
         {
-            if(boardgame.BoardGameId < 1)
-            {
-                throw new NullReferenceException("ID can't be less than 1");
-            }
-            else if (boardgame.Title == null || boardgame.Title == "")
+            //if(boardgame.BoardGameId < 1)
+            //{
+            //    throw new NullReferenceException("ID can't be less than 1");
+            //}
+             if (boardgame.Title == null || boardgame.Title == "")
             {
                 throw new NullReferenceException("Name can't be empty");
             }
@@ -55,7 +55,7 @@ namespace WDCO2R_HFT_2023241.Logic.Classes
             }
         }
 
-        public BoardGames Read(int boardgameId)
+        public BoardGame Read(int boardgameId)
         {
             if (boardgameId < 0)
             {
@@ -67,12 +67,12 @@ namespace WDCO2R_HFT_2023241.Logic.Classes
             }
         }
 
-        public IEnumerable<BoardGames> ReadAll()
+        public IEnumerable<BoardGame> ReadAll()
         {
             return Boardgamerepo.ReadAll();
         }
 
-        public void Update(BoardGames boardgame)
+        public void Update(BoardGame boardgame)
         {
             if (boardgame == null)
             {

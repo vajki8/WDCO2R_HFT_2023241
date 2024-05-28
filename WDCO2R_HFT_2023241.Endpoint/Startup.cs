@@ -16,6 +16,7 @@ using System.Threading.Tasks;
 using WDCO2R_HFT_2023241.Logic.Classes;
 using WDCO2R_HFT_2023241.Logic.InterFaces;
 using WDCO2R_HFT_2023241.Repository;
+using WDCO2R_HFT_2023241.Endpoint.Services;
 
 namespace WDCO2R_HFT_2023241.Endpoint
 {
@@ -40,6 +41,8 @@ namespace WDCO2R_HFT_2023241.Endpoint
             services.AddTransient<IBoardGameLogic, BoardGameLogic>();
             services.AddTransient<IRentalLogic, RentalLogic>();
             services.AddTransient<ICustomerLogic, CustomerLogic>();
+
+            services.AddSignalR();
 
             services.AddControllers();
             services.AddSwaggerGen(c =>
@@ -74,6 +77,7 @@ namespace WDCO2R_HFT_2023241.Endpoint
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllers();
+                endpoints.MapHub<SignalRHub>("/hub");
             });
         }
     }

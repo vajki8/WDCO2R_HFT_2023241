@@ -67,7 +67,6 @@ namespace WDCO2R_HFT_2023242.WpfClient
                     {
                         Name = SelectedRental.Name,
                         Price = SelectedRental.Price,
-                        BoardGameId = SelectedRental.BoardGameId,
                         TimeLeft = SelectedRental.TimeLeft,
                     });
                 });
@@ -81,7 +80,6 @@ namespace WDCO2R_HFT_2023242.WpfClient
                 },
                 () => { return SelectedRental != null; });
 
-                //Had to set the Default Release Date to an accepted date
                 SelectedRental = new Rental() { Name = "New Rental", TimeLeft = 2000 };
             }
         }

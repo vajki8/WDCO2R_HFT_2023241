@@ -28,6 +28,7 @@ namespace WDCO2R_HFT_2023242.WpfClient
         private void bt_games_Click(object sender, RoutedEventArgs e)
         {
             BoardGameWindow boardGameWindow = new BoardGameWindow();
+            this.Visibility = Visibility.Visible;
             boardGameWindow.Show();
         }
 
@@ -35,14 +36,14 @@ namespace WDCO2R_HFT_2023242.WpfClient
         {
             CustomerWindow customerWindow = new CustomerWindow();
             this.Visibility = Visibility.Visible;
-            customerWindow.ShowDialog();
+            customerWindow.Show();
         }
 
         private void bt_rent_Click(object sender, RoutedEventArgs e)
         {
             RentalWindow rentalWindow = new RentalWindow();
             this.Visibility = Visibility.Visible;
-            rentalWindow.ShowDialog();
+            rentalWindow.Show();
         }
     }
 }

@@ -19,7 +19,7 @@ namespace WDCO2R_HFT_2023241.Models
         [StringLength(50)]
         public string Name { get; set; }
 
-        [ForeignKey(nameof(Models.BoardGames))]
+        [ForeignKey(nameof(Models.BoardGame))]
         public int BoardGameId { get; set; }
         [ForeignKey(nameof(Models.Customer))]
         [Required]
@@ -33,7 +33,7 @@ namespace WDCO2R_HFT_2023241.Models
 
         [NotMapped]
         [JsonIgnore]
-        public virtual BoardGames BoardGame { get; set; }
+        public virtual BoardGame BoardGame { get; set; }
 
         [JsonIgnore]
         [NotMapped]

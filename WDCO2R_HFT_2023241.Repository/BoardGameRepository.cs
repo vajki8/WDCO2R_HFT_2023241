@@ -16,7 +16,7 @@ namespace WDCO2R_HFT_2023241.Repository
         {
             this.context = context;
         }
-        public void Create(BoardGames boardGames)
+        public void Create(BoardGame boardGames)
         {
             context.BoardGame.Add(boardGames);
             context.SaveChanges();
@@ -27,16 +27,16 @@ namespace WDCO2R_HFT_2023241.Repository
             context.SaveChanges();
         }
 
-        public BoardGames Read(int boardgameid)
+        public BoardGame Read(int boardgameid)
         {
             return context.BoardGame.FirstOrDefault(t => t.BoardGameId == boardgameid);
         }
 
-        public IQueryable<BoardGames> ReadAll()
+        public IQueryable<BoardGame> ReadAll()
         {
             return context.BoardGame;
         }
-        public void Update(BoardGames boardgames)
+        public void Update(BoardGame boardgames)
         {
             var updated = Read(boardgames.BoardGameId);
             updated.BoardGameId = boardgames.BoardGameId;

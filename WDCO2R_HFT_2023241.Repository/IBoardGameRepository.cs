@@ -9,10 +9,10 @@ namespace WDCO2R_HFT_2023241.Repository
 {
     public interface IBoardGameRepository
     {
-        void Create(BoardGames boardgame);
+        void Create(BoardGame boardgame);
         void Delete(int boardgameid);
-        BoardGames Read(int boardgameid);
-        IQueryable<BoardGames> ReadAll();
-        void Update(BoardGames boardgame);
+        BoardGame Read(int boardgameid);
+        IQueryable<BoardGame> ReadAll();
+        void Update(BoardGame boardgame);
     }
 }

@@ -10,7 +10,7 @@ using System.Text.Json.Serialization;
 namespace WDCO2R_HFT_2023241.Models
 {
     [Table("Games")]
-    public class BoardGames
+    public class BoardGame
     {
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
@@ -24,7 +24,7 @@ namespace WDCO2R_HFT_2023241.Models
         [NotMapped]
         [JsonIgnore]
         public virtual ICollection<Rental> Rental { get; set; }
-        public BoardGames()
+        public BoardGame()
         {
 
         }

@@ -9,10 +9,10 @@ namespace WDCO2R_HFT_2023241.Logic.InterFaces
 {
     public interface IBoardGameLogic
     {
-        void Create(BoardGames boardgame);
+        void Create(BoardGame boardgame);
         void Delete(int boardgameid);
-        BoardGames Read(int boardgameid);
-        IEnumerable<BoardGames> ReadAll();
-        void Update(BoardGames boardgame);
+        BoardGame Read(int boardgameid);
+        IEnumerable<BoardGame> ReadAll();
+        void Update(BoardGame boardgame);
     }
 }

@@ -24,7 +24,7 @@ namespace WDCO2R_HFT_2023241.Client
                 Console.WriteLine("Type: ");
                 string boardgametype = Console.ReadLine();
 
-                rest.Post(new BoardGames() { BoardGameId = boradgameid, Title = boardgametitle, Type = boardgametype }, "boardgame");
+                rest.Post(new BoardGame() { BoardGameId = boradgameid, Title = boardgametitle, Type = boardgametype }, "boardgame");
             }
             else if (entity.ToLower() == "customer")
             {
@@ -91,7 +91,7 @@ namespace WDCO2R_HFT_2023241.Client
             Console.Clear();
             Console.WriteLine("Id of the boardgame you want to get: ");
             int id = int.Parse(Console.ReadLine());
-            Console.WriteLine(rest.Get<BoardGames>(id, "boardgames").ToString());
+            Console.WriteLine(rest.Get<BoardGame>(id, "boardgames").ToString());
             Console.Write("\nPress any button to continue");
             Console.ReadKey();
         }
@@ -132,7 +132,7 @@ namespace WDCO2R_HFT_2023241.Client
             {
                 Console.Write("Enter the id of the game that you want to update: ");
                 int id = int.Parse(Console.ReadLine());
-                BoardGames one = rest.Get<BoardGames>(id, "boardgame");
+                BoardGame one = rest.Get<BoardGame>(id, "boardgame");
                 Console.Write($"New name [old: {one.Title}]: ");
                 string name = Console.ReadLine();
                 one.Title = name;
@@ -233,7 +233,7 @@ namespace WDCO2R_HFT_2023241.Client
                 () => new ConsoleMenu()
                 .Add("Create", () => Create("boardgame"))
                 .Add("Delete", () => Delete("boardgame"))
-                .Add("Lists of all items", () => ReadAll<BoardGames>(rest.Get<BoardGames>("boardgame"), "game"))
+                .Add("Lists of all items", () => ReadAll<BoardGame>(rest.Get<BoardGame>("boardgame"), "game"))
                 .Add("Read by ID", () => ReadBoardGame("boardgame"))
                 .Add("Update", () => Update("boardgame"))
                 .Add("Back to menu", ConsoleMenu.Close)
