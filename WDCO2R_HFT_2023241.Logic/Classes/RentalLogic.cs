@@ -71,11 +71,11 @@ namespace WDCO2R_HFT_2023241.Logic.Classes
 
         public void Update(Rental rental)
         {
-            if (rental.RentId < 1 || rental.BoardGameId < 1 || rental.CustomerId < 1)
-            {
-                throw new NullReferenceException("ID can't be less than 1");
-            }
-            else if (rental.Price > 80001)
+            //if (rental.RentId < 1 || rental.BoardGameId < 1 || rental.CustomerId < 1)
+            //{
+            //    throw new NullReferenceException("ID can't be less than 1");
+            //}
+            if (rental.Price > 80001)
             {
                 throw new ArgumentException("Rent price can't be higher than 80k Ft");
             }
