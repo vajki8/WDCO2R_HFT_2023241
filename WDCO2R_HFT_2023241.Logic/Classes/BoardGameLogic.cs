@@ -21,11 +21,7 @@ namespace WDCO2R_HFT_2023241.Logic.Classes
 
         public void Create(BoardGame boardgame)
         {
-            //if(boardgame.BoardGameId < 1)
-            //{
-            //    throw new NullReferenceException("ID can't be less than 1");
-            //}
-             if (boardgame.Title == null || boardgame.Title == "")
+            if (boardgame.Title == null || boardgame.Title == "")
             {
                 throw new NullReferenceException("Name can't be empty");
             }

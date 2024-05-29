@@ -19,11 +19,7 @@ namespace WDCO2R_HFT_2023241.Logic.Classes
         }
         public void Create(Customer customer)
         {
-            if (customer.CustomerId < 1)
-            {
-                throw new NullReferenceException("ID can't be less than 1");
-            }
-            else if (customer.CustomerName == null || customer.CustomerName == "")
+            if (customer.CustomerName == null || customer.CustomerName == "")
             {
                 throw new NullReferenceException("Name can't be empty");
             }

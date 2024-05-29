@@ -68,6 +68,8 @@ namespace WDCO2R_HFT_2023242.WpfClient
                         Name = SelectedRental.Name,
                         Price = SelectedRental.Price,
                         TimeLeft = SelectedRental.TimeLeft,
+                        RentId = SelectedRental.RentId
+                        ,
                     });
                 });
                 UpdateRentalCommand = new RelayCommand(() =>
@@ -80,7 +82,7 @@ namespace WDCO2R_HFT_2023242.WpfClient
                 },
                 () => { return SelectedRental != null; });
 
-                SelectedRental = new Rental() { Name = "New Rental", TimeLeft = 2000 };
+                SelectedRental = new Rental() { Name = "New Rental", TimeLeft = 2000, RentId = 100 };
             }
         }
     }

@@ -1,16 +1,13 @@
 let boardgames = [];
 let connection = null;
-getdata();
+
 setupsignalr();
 
-let boardgameidtoupdate = -1;
+defaultValuesToLoad();
 
-async function getdata() {
-    await fetch('http://localhost:35357/boardgame').then(x => x.json()).then(y => {
-        boardgames = y;
-        display();
-    });
-}
+getdata();
+
+let boardgameidtoupdate = -1;
 
 function setupsignalr() {
     connection = new signalR.HubConnectionBuilder()
@@ -55,6 +52,16 @@ async function start() {
     }
 };
 
+async function getdata() {
+    await fetch('http://localhost:35357/boardgame')
+        .then(x => x.json())
+        .then(y => {
+            boardgames = y;
+            console.log(boardgames)
+            display();
+    });
+}
+
 function showupdate(id) {
     document.getElementById('gametitleupdate').value = boardgames.find(x => x['boardgameId'] == id)['title'];
     document.getElementById('gametypeupdate').value = boardgames.find(x => x['boardgameId'] == id)['type'];
@@ -63,7 +70,6 @@ function showupdate(id) {
 }
 
 function display() {
-    document.getElementById('resultarea').innerHTML = "";
     boardgames.forEach(x => {
         document.getElementById('resultarea').innerHTML += "<tr><td>" + x.title + "</td><td>" + x.type + "</td><td>" + `<button type="button" onclick="remove(${x.boardgameId})">Delete</button>` + `<button type="button" onclick="showupdate(${x.boardgameId})">Update</button>` + "</td></tr>"
         console.log(x.title);
@@ -141,5 +147,10 @@ function update() {
             console.error('Error:', error);
         });
 
+
+}
+
+function defaultValuesToLoad() {
+    document.getElementById('gameName').placeholder = "Enter your game name here...";
 
 }
