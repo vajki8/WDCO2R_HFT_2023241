@@ -1,0 +1,62 @@
+﻿﻿
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title></title>
+    <link rel="stylesheet" href="StyleSheet.css" />
+</head>
+<body>
+
+    <h1>Rent catalog</h1>
+
+    <div id="formdiv">
+        <label>Rent Name</label>
+        <input type="text" id="rentname" />
+        <label>Rent Price</label>
+        <input type="text" id="rentprice" />
+        <label>Rent TimeLeft</label>
+        <input type="text" id="renttime" />
+        <label>Rented Game</label>
+        <input type="text" id="rentgame" />
+        <button type="button" onclick="create()">Add Rent</button>
+    </div>
+
+    <div id="updateformdiv">
+        <label>Rent Name</label>
+        <input type="text" id="rentnameupdate" />
+        <label>Rent Price</label>
+        <input type="text" id="rentpriceupdate" />
+        <label>Rent TimeLeft</label>
+        <input type="text" id="renttimeupdate" />
+        <label>Rented Game</label>
+        <input type="text" id="rentgameupdate" />
+        <button type="button" onclick="update()">Update Rent</button>
+    </div>
+
+    <table>
+        <thead>
+            <tr>
+                <th>
+                    Name
+                </th>
+                <th>
+                    Price
+                </th>
+                <th>
+                    Time Left
+                </th>
+                <th>
+                    Actions
+                </th>
+            </tr>
+        </thead>
+        <tbody id="resultarea">
+        </tbody>
+    </table>
+
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/microsoft-signalr/6.0.1/signalr.js"></script>
+    <script src="rental.js"></script>
+</body>
+</html>

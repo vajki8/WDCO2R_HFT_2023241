@@ -1,4 +1,4 @@
-let boardgames = [];
+let customers = [];
 let connection = null;
 
 setupsignalr();
@@ -6,7 +6,7 @@ setupsignalr();
 
 getdata();
 
-let boardGameIdtoupdate = -1;
+let customerIdtoupdate = -1;
 
 function setupsignalr() {
     connection = new signalR.HubConnectionBuilder()
@@ -16,20 +16,20 @@ function setupsignalr() {
 
     connection.on
         (
-            "boardgameCreated", (user, message) => {
+            "customerCreated", (user, message) => {
                 getdata();
             });
 
 
     connection.on
         (
-            "boardgameDeleted", (user, message) => {
+            "customerDeleted", (user, message) => {
                 getdata();
             });
 
     connection.on
         (
-            "boardgameUpdated", (user, message) => {
+            "customerUpdated", (user, message) => {
                 getdata();
             });
 
@@ -52,32 +52,32 @@ async function start() {
 };
 
 async function getdata() {
-    await fetch('http://localhost:35357/boardgame')
+    await fetch('http://localhost:35357/customer')
         .then(x => x.json())
         .then(y => {
-            boardgames = y;
-            console.log(boardgames)
+            customers = y;
+            console.log(customers)
             display();
-    });
+        });
 }
 
 function showupdate(id) {
-    document.getElementById('gametitleupdate').value = boardgames.find(x => x['boardGameId'] == id)['title'];
-    document.getElementById('gametypeupdate').value = boardgames.find(x => x['boardGameId'] == id)['type'];
+    document.getElementById('custnameupdate').value = customers.find(x => x['customerId'] == id)['name'];
+    document.getElementById('custageupdate').value = customers.find(x => x['customerId'] == id)['age'];
     document.getElementById('updateformdiv').style.display = 'flex';
-    boardGameIdtoupdate = id;
+    customerIdtoupdate = id;
 }
 
 function display() {
     document.getElementById('resultarea').innerHTML = "";
-    boardgames.forEach(x => {
-        document.getElementById('resultarea').innerHTML += "<tr><td>" + x.boardGameId + "</td><td>" + x.title + "</td><td>" + x.type + "</td>" + `<button type="button" onclick="remove(${x.boardGameId})">Delete</button>` + `<button type="button" onclick="showupdate(${x.boardGameId})">Update</button>` + "</td></tr>"
+    customers.forEach(x => {
+        document.getElementById('resultarea').innerHTML += "<tr><td>" + x.customerName + "</td><td>" + x.customerAge + "</td><td>" + `<button type="button" onclick="remove(${x.customerId})">Delete</button>` + `<button type="button" onclick="showupdate(${x.customerId})">Update</button>` + "</td></tr>"
         console.log(x.title);
     });
 }
 
 function remove(id) {
-    fetch('http://localhost:35357/boardgame/' + id, {
+    fetch('http://localhost:35357/customer/' + id, {
         method: 'DELETE',
         headers: {
             'Content-Type': 'application/json',
@@ -95,18 +95,17 @@ function remove(id) {
 }
 
 function create() {
-    let ttitle = document.getElementById("gametitle").value;
-    let ttype = document.getElementById("gametype").value;
+    let nname = document.getElementById("custName").value;
+    let aage = document.getElementById("custAge").value;
 
-    fetch('http://localhost:35357/boardgame', {
+    fetch('http://localhost:35357/customer', {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json',
         },
         body: JSON.stringify(
             {
-                type: ttype,
-                title: ttitle
+                customerName: nname, customerAge: aage
             }),
     })
         .then(response => response)
@@ -123,17 +122,17 @@ function create() {
 
 function update() {
     document.getElementById('updateformdiv').style = 'none';
-    let ttitle = document.getElementById('gametitleupdate').value;
-    let ttype = document.getElementById('gametypeupdate').value;
+    let ttitle = document.getElementById('custnameupdate').value;
+    let ttype = document.getElementById('custageupdate').value;
 
-    fetch('http://localhost:35357/boardgame', {
+    fetch('http://localhost:35357/customer', {
         method: 'PUT',
         headers: {
             'Content-Type': 'application/json',
         },
         body: JSON.stringify(
             {
-                boardGameId: boardGameIdtoupdate, title: ttitle, type: ttype
+                customerId: customerIdtoupdate, customerName: nname, customerAge: aage
             }),
     })
         .then(response => response)
