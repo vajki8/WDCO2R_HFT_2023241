@@ -74,7 +74,14 @@ function selectStat() {
     return selectedStat;
 }
 
-
+async function contentDecider() {
+    //Description contents
+    const avgPriceText = "This stat shows the average rating of the games.";
+    const sumGamesText = "This stat shows the sum of the games.";
+    const oldestRentText = "This stat shows the oldest game.";
+    const youngestRentText = "This stat shows the youngest game.";
+    const mstExpText = "This stat shows the most expensive game.";
+    const freeGamesText = "This stat shows the list of free games.";
 
     if (selectStat() == "avgPrice") {
         //console.log(`Average: ${await getAvgRating()}`);
@@ -86,11 +93,11 @@ function selectStat() {
         document.getElementById('statTable').rows[2].cells[0].innerHTML = `${await getSumOfGames()} games in total.`;
     } else if (selectStat() == "oldestGame") {
         //console.log(`Name: ${await getOldestGame()}`);
-        document.getElementById('statTable').rows[1].cells[0].innerHTML = oldestGameText;
+        document.getElementById('statTable').rows[1].cells[0].innerHTML = oldestRentText;
         document.getElementById('statTable').rows[2].cells[0].innerHTML = `${await getOldestGame()} is the oldest game.`;
     } else if (selectStat() == "youngestGame") {
         //console.log(`Name: ${await getYoungestGame()}`);
-        document.getElementById('statTable').rows[1].cells[0].innerHTML = youngestGameText;
+        document.getElementById('statTable').rows[1].cells[0].innerHTML = youngestRentText;
         document.getElementById('statTable').rows[2].cells[0].innerHTML = `${await getYoungestGame()} is the youngest game.`;
     } else if (selectStat() == "highestPrice") {
         //console.log(`Name: ${await getHighestPriceGame()}`);

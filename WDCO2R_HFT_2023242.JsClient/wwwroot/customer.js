@@ -62,8 +62,8 @@ async function getdata() {
 }
 
 function showupdate(id) {
-    document.getElementById('custnameupdate').value = customers.find(x => x['customerId'] == id)['name'];
-    document.getElementById('custageupdate').value = customers.find(x => x['customerId'] == id)['age'];
+    document.getElementById('custnameupdate').value = customers.find(x => x['customerId'] == id)['customerName'];
+    document.getElementById('custageupdate').value = customers.find(x => x['customerId'] == id)['customerAge'];
     document.getElementById('updateformdiv').style.display = 'flex';
     customerIdtoupdate = id;
 }
@@ -122,8 +122,8 @@ function create() {
 
 function update() {
     document.getElementById('updateformdiv').style = 'none';
-    let ttitle = document.getElementById('custnameupdate').value;
-    let ttype = document.getElementById('custageupdate').value;
+    let nname = document.getElementById('custnameupdate').value;
+    let aage = document.getElementById('custageupdate').value;
 
     fetch('http://localhost:35357/customer', {
         method: 'PUT',

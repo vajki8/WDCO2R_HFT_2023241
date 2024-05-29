@@ -62,10 +62,9 @@ async function getdata() {
 }
 
 function showupdate(id) {
-    document.getElementById('rentnameupdate').value = rentals.find(x => x['rentalId'] == id)['name'];
-    document.getElementById('rentpriceupdate').value = rentals.find(x => x['rentalId'] == id)['price'];
+    document.getElementById('rentnameupdate').value = rentals.find(x => x['rentalId'] == id)['Name'];
+    document.getElementById('rentpriceupdate').value = rentals.find(x => x['rentalId'] == id)['Price'];
     document.getElementById('renttimeupdate').value = rentals.find(x => x['rentalId'] == id)['timeLeft'];
-    document.getElementById('rentgameupdate').value = rentals.find(x => x['rentalId'] == id)['boardGame'];
     document.getElementById('updateformdiv').style.display = 'flex';
     rentalIdtoupdate = id;
 }
@@ -100,7 +99,6 @@ function create() {
     let nname = document.getElementById("rentname").value;
     let pprice = document.getElementById("rentprice").value;
     let ttime = document.getElementById("renttime").value;
-    let ggame = document.getElementById("rentgame").value;
 
     fetch('http://localhost:35357/rental', {
         method: 'POST',
@@ -109,7 +107,7 @@ function create() {
         },
         body: JSON.stringify(
             {
-                name: nname, price: pprice, boardGame: ggame, timeLeft: ttime
+                name: nname, price: pprice, timeLeft: ttime
             }),
     })
         .then(response => response)
@@ -129,7 +127,6 @@ function update() {
     let nname = document.getElementById("rentname").value;
     let pprice = document.getElementById("rentprice").value;
     let ttime = document.getElementById("renttime").value;
-    let ggame = document.getElementById("rentgame").value;
 
     fetch('http://localhost:35357/rental', {
         method: 'PUT',
@@ -138,7 +135,7 @@ function update() {
         },
         body: JSON.stringify(
             {
-                rentalId: rentalIdtoupdate, rentalName: nname, rentalPrice: pprice, rentalBoardGame: ggame, rentalTime: ttime
+                rentalId: rentalIdtoupdate, rentalName: nname, rentalPrice: pprice, rentalTime: ttime
             }),
     })
         .then(response => response)
