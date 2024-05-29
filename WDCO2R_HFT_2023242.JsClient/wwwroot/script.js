@@ -3,11 +3,10 @@ let connection = null;
 
 setupsignalr();
 
-defaultValuesToLoad();
 
 getdata();
 
-let boardgameidtoupdate = -1;
+let boardGameIdtoupdate = -1;
 
 function setupsignalr() {
     connection = new signalR.HubConnectionBuilder()
@@ -63,15 +62,16 @@ async function getdata() {
 }
 
 function showupdate(id) {
-    document.getElementById('gametitleupdate').value = boardgames.find(x => x['boardgameId'] == id)['title'];
-    document.getElementById('gametypeupdate').value = boardgames.find(x => x['boardgameId'] == id)['type'];
+    document.getElementById('gametitleupdate').value = boardgames.find(x => x['boardGameId'] == id)['title'];
+    document.getElementById('gametypeupdate').value = boardgames.find(x => x['boardGameId'] == id)['type'];
     document.getElementById('updateformdiv').style.display = 'flex';
-    boardgameidtoupdate = id;
+    boardGameIdtoupdate = id;
 }
 
 function display() {
+    document.getElementById('resultarea').innerHTML = "";
     boardgames.forEach(x => {
-        document.getElementById('resultarea').innerHTML += "<tr><td>" + x.title + "</td><td>" + x.type + "</td><td>" + `<button type="button" onclick="remove(${x.boardgameId})">Delete</button>` + `<button type="button" onclick="showupdate(${x.boardgameId})">Update</button>` + "</td></tr>"
+        document.getElementById('resultarea').innerHTML += "<tr><td>" + x.boardGameId + "</td><td>" + x.title + "</td><td>" + x.type + "</td>" + `<button type="button" onclick="remove(${x.boardGameId})">Delete</button>` + `<button type="button" onclick="showupdate(${x.boardGameId})">Update</button>` + "</td></tr>"
         console.log(x.title);
     });
 }
@@ -123,8 +123,8 @@ function create() {
 
 function update() {
     document.getElementById('updateformdiv').style = 'none';
-    let ttitle = document.getElementById("gametitleupdate").value;
-    let ttype = document.getElementById("gametypetoupdate").value;
+    let ttitle = document.getElementById('gametitleupdate').value;
+    let ttype = document.getElementById('gametypeupdate').value;
 
     fetch('http://localhost:35357/boardgame', {
         method: 'PUT',
@@ -133,9 +133,7 @@ function update() {
         },
         body: JSON.stringify(
             {
-                type:ttype,
-                title: ttitle,
-                boardgameId: boardgameidtoupdate
+                boardGameId: boardGameIdtoupdate, title: ttitle, type: ttype
             }),
     })
         .then(response => response)
@@ -147,10 +145,5 @@ function update() {
             console.error('Error:', error);
         });
 
-
-}
-
-function defaultValuesToLoad() {
-    document.getElementById('gameName').placeholder = "Enter your game name here...";
 
 }
