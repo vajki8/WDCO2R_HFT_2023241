@@ -41,24 +41,18 @@ async function getSumOfGames() {
 }
 async function getOldestRent() {
     await getalldata();
-    const oldest = rentals.sort((a, b) => a.timeLeft - b.timeLeft)[0];
+    const oldest = rentals.sort((a, b) => b.timeLeft - a.timeLeft)[0];
     return oldest.name;
 }
 async function getYoungestRent() {
     await getalldata();
-    const youngest = boardgames.sort((a, b) => b.release - a.release)[0];
-    return youngest.title;
+    const youngest = rentals.sort((a, b) => a.timeLeft - b.timeLeft)[0];
+    return youngest.name;
 }
-async function getHighestPriceGame() {
+async function getHighestPrice() {
     await getalldata();
-    const highp = rentals.sort((a, b) => b.price - a.price)[0];
-    return highp.customerName;
-}
-async function getFreeGames() {
-    await getalldata();
-    const freeGames = games.filter(game => game.price === 0).map(game => game.gameName);
-    //console.log(freeGames);
-    return freeGames.join(" - ");
+    const highest = rentals.sort((a, b) => b.price - a.price)[0];
+    return highest.name;
 }
 
 
@@ -76,37 +70,30 @@ function selectStat() {
 
 async function contentDecider() {
     //Description contents
-    const avgPriceText = "This stat shows the average rating of the games.";
-    const sumGamesText = "This stat shows the sum of the games.";
-    const oldestRentText = "This stat shows the oldest game.";
-    const youngestRentText = "This stat shows the youngest game.";
-    const mstExpText = "This stat shows the most expensive game.";
-    const freeGamesText = "This stat shows the list of free games.";
+    const avgPriceText = "Atlag kolcsonzesi ar.";
+    const sumGamesText = "Hany db jatek.";
+    const oldestRentText = "Leghosszabb berles.";
+    const youngestRentText = "Legrovidebb berles.";
+    const freeGamesText = "legdragabb jatek.";
 
     if (selectStat() == "avgPrice") {
-        //console.log(`Average: ${await getAvgRating()}`);
         document.getElementById('statTable').rows[1].cells[0].innerHTML = avgPriceText;
-        document.getElementById('statTable').rows[2].cells[0].innerHTML = `${await getAvgPrice()} is average price of the rents.`;
-    } else if (selectStat() == "sumOfGames") {
+        document.getElementById('statTable').rows[2].cells[0].innerHTML = `${await getAvgPrice()}Ft, ennyi atlagosan egy berles most.`;}
+     else if (selectStat() == "sumOfGames") {
         //console.log(`Sum: ${await getSumOfGames()}`);
         document.getElementById('statTable').rows[1].cells[0].innerHTML = sumGamesText;
-        document.getElementById('statTable').rows[2].cells[0].innerHTML = `${await getSumOfGames()} games in total.`;
-    } else if (selectStat() == "oldestGame") {
+        document.getElementById('statTable').rows[2].cells[0].innerHTML = `${await getSumOfGames()}db jatek van eppen berbe adva.`;
+    } else if (selectStat() == "oldestRent") {
         //console.log(`Name: ${await getOldestGame()}`);
         document.getElementById('statTable').rows[1].cells[0].innerHTML = oldestRentText;
-        document.getElementById('statTable').rows[2].cells[0].innerHTML = `${await getOldestGame()} is the oldest game.`;
-    } else if (selectStat() == "youngestGame") {
+        document.getElementById('statTable').rows[2].cells[0].innerHTML = `${await getOldestRent()} a leghosszabb berlesunk.`;
+    } else if (selectStat() == "youngestRent") {
         //console.log(`Name: ${await getYoungestGame()}`);
         document.getElementById('statTable').rows[1].cells[0].innerHTML = youngestRentText;
-        document.getElementById('statTable').rows[2].cells[0].innerHTML = `${await getYoungestGame()} is the youngest game.`;
+        document.getElementById('statTable').rows[2].cells[0].innerHTML = `${await getYoungestRent()} a legrovidebb berlesunk.`;
     } else if (selectStat() == "highestPrice") {
-        //console.log(`Name: ${await getHighestPriceGame()}`);
-        document.getElementById('statTable').rows[1].cells[0].innerHTML = mstExpText;
-        document.getElementById('statTable').rows[2].cells[0].innerHTML = `${await getHighestPriceGame()} is the most expensive game.`;
-    }
-    else if (selectStat() == "freeGames") {
         //console.log(`List:\n ${await getFreeGames()}`);
         document.getElementById('statTable').rows[1].cells[0].innerHTML = freeGamesText;
-        document.getElementById('statTable').rows[2].cells[0].innerHTML = `${await getFreeGames()}`;
+        document.getElementById('statTable').rows[2].cells[0].innerHTML = `${await getHighestPrice()} a legdragabb berlesunk`;
     }
 }
